@@ -1,4 +1,6 @@
-package com.alevel.lecture3;
+package com.alevel.bogovesov;
+
+import com.alevel.lecture3.SortingAlgorithm;
 
 /**
  * The selection sort algorithm.

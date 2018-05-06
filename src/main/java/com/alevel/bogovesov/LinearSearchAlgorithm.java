@@ -1,4 +1,4 @@
-package com.alevel.lecture2;
+package com.alevel.bogovesov;
 
 /**
  * TODO
