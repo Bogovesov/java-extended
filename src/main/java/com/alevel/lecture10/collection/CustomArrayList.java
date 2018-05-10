@@ -3,14 +3,14 @@ package com.alevel.lecture10.collection;
 public class CustomArrayList<T> {
     private final int INIT_SIZE = 0;
 
-    private Elements[] localData;
+    private Object[] localData;
 
     public CustomArrayList() {
         init();
     }
 
     private void init() {
-        this.localData = new Elements[INIT_SIZE];
+        this.localData = new Object[ INIT_SIZE];
     }
 
     public void add(T object) {
@@ -20,15 +20,15 @@ public class CustomArrayList<T> {
     public void add(int index, T object) {
         if (index == localData.length) {
             expand();
-            localData[localData.length - 1] = new Elements(object);
+            localData[localData.length - 1] = object;
         } else {
             insertTo(index, object);
         }
     }
 
     public T remove(int index) {
-        T removedElements = (T) localData[index].object;
-        Elements[] tmp = new Elements[localData.length - 1];
+        T removedElements = (T) localData[index];
+        Object[] tmp = new Object[localData.length - 1];
         int j = 0;
         for (int i = 0; i < tmp.length; i++) {
             if (i == index) {
@@ -42,7 +42,7 @@ public class CustomArrayList<T> {
     }
 
     public T get(int index) {
-        return (T) localData[index].object;
+        return (T) localData[index];
     }
 
     public int length() {
@@ -51,7 +51,7 @@ public class CustomArrayList<T> {
 
     public boolean contains(T object) {
         for (int i = 0; i < localData.length; i++) {
-            if (localData[i].object == object) {
+            if (localData[i] == object) {
                 return true;
             }
         }
@@ -63,11 +63,11 @@ public class CustomArrayList<T> {
     }
 
     private void insertTo(int index, T object) {
-        Elements[] tmp = new Elements[localData.length + 1];
+        Object[] tmp = new Object[localData.length + 1];
         int j = 0;
         for (int i = 0; i < localData.length; i++) {
             if (i == index) {
-                tmp[j] = new Elements(object);
+                tmp[j] = object;
                 j++;
             }
             tmp[j] = localData[i];
@@ -77,16 +77,8 @@ public class CustomArrayList<T> {
     }
 
     private void expand() {
-        Elements[] tmp = new Elements[localData.length + 1];
+        Object[] tmp = new Object[localData.length + 1];
         System.arraycopy(localData, 0, tmp, 0, localData.length);
         localData = tmp;
-    }
-
-    class Elements<T> {
-        public T object;
-
-        public Elements(T object) {
-            this.object = object;
-        }
     }
 }
